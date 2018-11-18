@@ -1,0 +1,193 @@
+﻿<Page x:Class="WPFApp.Views.ParametersView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFApp.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="{Binding Title}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="GridBasePicture" Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Style="{StaticResource MyButtonStyle}" Grid.Column="0" Command="{Binding BasicImgLoadButton_ClickCommand}">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock Text="{Binding BasicImgLoadButton_ButtonContent}" Style="{StaticResource MyTextBlockStyle}"></TextBlock>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+
+            <Viewbox Grid.Column="1" >
+                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="{Binding BasicImgPath}"></TextBlock>
+            </Viewbox>
+        </Grid>
+
+        <Grid x:Name="GridTextIn" Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Style="{StaticResource MyButtonStyle}" Grid.Column="0" Command="{Binding MessageLoadButton_ClickCommand}">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock Text="{Binding MessageLoadButton_ButtonContent}" Style="{StaticResource MyTextBlockStyle}"></TextBlock>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+
+            <Viewbox Grid.Column="1" >
+                <TextBlock Style="{StaticResource MyTextBlockStyle}" Text="{Binding MessagePath}"></TextBlock>
+            </Viewbox>
+
+        </Grid>
+
+        <Grid x:Name="GridRGBParameters" Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Column="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBlock Text="Red" Style="{StaticResource MyRedTextBlockStyle}"></TextBlock>
+                </Viewbox>
+
+                <Viewbox Grid.Row="1" Grid.Column="1"  >
+                    <TextBlock Text="{Binding ElementName=sliderColorRed, Path=Value, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBlockForSliderStyle}" />
+                </Viewbox>
+
+                <Slider Grid.Row="1" Grid.Column="0" Maximum="8" Minimum="0" Style="{StaticResource MySliderVerticalStyle}" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="sliderColorRed" Value="{Binding SliderRedValue}"/>
+            </Grid>
+
+            <Grid Column="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBlock Text="Green" Style="{StaticResource MyGreenTextBlockStyle}"></TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="1" Grid.Column="1"  >
+                    <TextBlock Text="{Binding ElementName=sliderColorGreen, Path=Value, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBlockForSliderStyle}" />
+                </Viewbox>
+                <Slider Grid.Row="1" Grid.Column="0" Maximum="8" Minimum="0" Style="{StaticResource MySliderVerticalStyle}" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="sliderColorGreen" Value="{Binding SliderGreenValue}"/>
+            </Grid>
+
+            <Grid Column="2" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBlock Text="Blue" Style="{StaticResource MyBlueTextBlockStyle}"></TextBlock>
+                </Viewbox>
+
+                <Viewbox Grid.Row="1" Grid.Column="1" >
+                    <TextBlock Text="{Binding ElementName=sliderColorBlue, Path=Value, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBlockForSliderStyle}" />
+                </Viewbox>
+
+                <Slider Grid.Row="1" Grid.Column="0" Maximum="8" Minimum="0" Style="{StaticResource MySliderVerticalStyle}" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="sliderColorBlue" Value="{Binding SliderBlueValue}"/>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+
+                    <CheckBox Grid.Column="0" Grid.Row="0" IsChecked="{Binding IsSelectedCheckBoxMessageType}" Style="{StaticResource MyCheckBoxStyle}"/>
+                    <Viewbox Grid.Column="1" Grid.Row="0">
+                        <TextBlock  Text="Massage is saved in Binary System" Style="{StaticResource MyTextBlockStyle}"/>
+                    </Viewbox>
+
+                    <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource MyButtonStyle}" Command="{Binding TestingButton_ClickCommand}" IsEnabled="{Binding EncryptButtonIsEnabled}">
+                        <Button.Content>
+                            <Viewbox>
+                                <TextBlock Text="{Binding TestingButton_ButtonContent}" Style="{StaticResource MyTextBlockStyle}"></TextBlock>
+                            </Viewbox>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="ProgresBarGrid" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <ProgressBar Grid.Column="0" Value="{Binding DecryptionProgressBarValue}" Maximum="{Binding DecryptionProgressBarMaxValue}" Style="{StaticResource MyProgressBarStyle}"/>
+            <ProgressBar Grid.Column="1" Value="{Binding EncryptionProgressBarValue}" Maximum="{Binding EncryptionProgressBarMaxValue}" Style="{StaticResource MyProgressBarStyle}"/>
+
+        </Grid>
+
+        <Grid x:Name="GridButtons" Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Button Style="{StaticResource MyButtonStyle}" Grid.Column="0" Command="{Binding DecryptButton_ClickCommand}" IsEnabled="{Binding DecryptButtonIsEnabled}">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock Text="{Binding DecryptButton_ButtonContent}" Style="{StaticResource MyTextBlockStyle}"></TextBlock>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+
+            <Button Style="{StaticResource MyButtonStyle}" Grid.Column="1" Command="{Binding EncryptButton_ClickCommand}" IsEnabled="{Binding EncryptButtonIsEnabled}">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock Text="{Binding EncryptButton_ButtonContent}" Style="{StaticResource MyTextBlockStyle}"></TextBlock>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>
+
