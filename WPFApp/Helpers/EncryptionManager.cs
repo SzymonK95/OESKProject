@@ -1,12 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Runtime.CompilerServices;
-using System.Runtime.Remoting.Contexts;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Interactivity;
-using System.Windows.Threading;
 
 namespace WPFApp.Helpers
 {

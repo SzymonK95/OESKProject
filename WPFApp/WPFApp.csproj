@@ -79,6 +79,8 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\DataManager.cs" />
     <Compile Include="Helpers\DecryptionManager.cs" />
+    <Compile Include="Helpers\TestsManager.cs" />
+    <Compile Include="Model\MessageImage.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Helpers\EncryptionManager.cs" />
     <Compile Include="Helpers\NoiseManager.cs" />
@@ -132,8 +134,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
