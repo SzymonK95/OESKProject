@@ -134,6 +134,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Files\Input\Texts\TextIn1.txt" />
+    <Resource Include="Files\Input\Texts\TextIn2.txt" />
+    <Resource Include="Files\Input\Texts\TextIn3.txt" />
+    <Resource Include="Files\Input\Texts\TextIn4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Files\Input\Images\PhotoIn1.jpg" />
+    <Resource Include="Files\Input\Images\PhotoIn2.jpg" />
+    <Resource Include="Files\Input\Images\PhotoIn3.jpg" />
+    <Resource Include="Files\Input\Images\PhotoIn4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Files\Output\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
