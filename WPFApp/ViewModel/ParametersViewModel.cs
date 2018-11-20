@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.CommandWpf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -11,11 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Win32;
-using MvvmDialogs;
 using WPFApp.Helpers;
 using Image = System.Drawing.Image;
 using System.Windows;
-using MvvmDialogs.FrameworkDialogs.MessageBox;
 
 namespace WPFApp.ViewModel
 {
@@ -29,8 +26,11 @@ namespace WPFApp.ViewModel
             get => decryptionProgressBarValue;
             set
             {
-                decryptionProgressBarValue = value;
-                NotifyPropertyChanged(nameof(DecryptionProgressBarValue));
+                if (!TestsManager.areTestsActive)
+                {
+                    decryptionProgressBarValue = value;
+                    NotifyPropertyChanged(nameof(DecryptionProgressBarValue));
+                }
             }
         }
 
@@ -40,8 +40,11 @@ namespace WPFApp.ViewModel
             get => encryptionProgressBarValue;
             set
             {
-                encryptionProgressBarValue = value;
-                NotifyPropertyChanged(nameof(EncryptionProgressBarValue));
+                if (!TestsManager.areTestsActive)
+                {
+                    encryptionProgressBarValue = value;
+                    NotifyPropertyChanged(nameof(EncryptionProgressBarValue));
+                }
             }
         }
 
@@ -296,7 +299,7 @@ namespace WPFApp.ViewModel
 
         public void TestingButton_ClickMethod()
         {
-            MessageBox.Show("Test starts");
+            TestsManager.Test(SliderRedValue, SliderGreenValue, SliderBlueValue);
         }
 
         #region Private
@@ -330,11 +333,11 @@ namespace WPFApp.ViewModel
 
             if (saveFileDialog.FileName != "")
             {
-                SaveImageWithMessageToBmp(ImageWithMessage, saveFileDialog.FileName);
+                FileManager.SaveImageWithMessageToBmp(ImageWithMessage, saveFileDialog.FileName);
             }
             else
             {
-                SaveImageWithMessageToBmp(ImageWithMessage);
+                FileManager.SaveImageWithMessageToBmp(ImageWithMessage);
             }
 
             SetEncryptionProgressBarValues();
@@ -356,11 +359,11 @@ namespace WPFApp.ViewModel
 
             if (saveFileDialog.FileName != "")
             {
-                SaveMessageToTxt(MessageFromImage, saveFileDialog.FileName);
+                FileManager.SaveMessageToTxt(MessageFromImage, saveFileDialog.FileName);
             }
             else
             {
-                SaveMessageToTxt(MessageFromImage);
+                FileManager.SaveMessageToTxt(MessageFromImage);
             }
 
             SetDecryptionProgressBarValues();
@@ -387,39 +390,17 @@ namespace WPFApp.ViewModel
 
             return isOK;
         }
-
-        private void SaveImageWithMessageToBmp(Bitmap image, string filePath = "")
-        {
-            if (filePath.Equals(String.Empty))
-            {
-                filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) 
-                    + @"\image" + DateTime.Now.Ticks + ".bmp";
-            }
-
-            image.Save(filePath, ImageFormat.Bmp);
-        }
-
-        private void SaveMessageToTxt(string message, string filePath = "")
-        {
-            if (filePath.Equals(String.Empty))
-            {
-                filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-                    + @"message" + DateTime.Now.Ticks + ".txt";
-            }
-
-            System.IO.File.WriteAllText(filePath, message);
-        }
         #endregion
 
         #endregion
 
         #region Commands
 
-        public ICommand EncryptButton_ClickCommand => new RelayCommand(EncryptButton_ClickMethod, AlwaysTrue);
-        public ICommand DecryptButton_ClickCommand => new RelayCommand(DecryptButton_ClickMethod, AlwaysTrue);
-        public ICommand BasicImgLoadButton_ClickCommand => new RelayCommand(BasicImgLoadButton_ClickMethod, AlwaysTrue);
-        public ICommand MessageLoadButton_ClickCommand => new RelayCommand(MessageLoadButton_ClickMethod, AlwaysTrue);
-        public ICommand TestingButton_ClickCommand => new RelayCommand(TestingButton_ClickMethod, AlwaysTrue);
+        public ICommand EncryptButton_ClickCommand => new Utils.RelayCommand(EncryptButton_ClickMethod, AlwaysTrue);
+        public ICommand DecryptButton_ClickCommand => new Utils.RelayCommand(DecryptButton_ClickMethod, AlwaysTrue);
+        public ICommand BasicImgLoadButton_ClickCommand => new Utils.RelayCommand(BasicImgLoadButton_ClickMethod, AlwaysTrue);
+        public ICommand MessageLoadButton_ClickCommand => new Utils.RelayCommand(MessageLoadButton_ClickMethod, AlwaysTrue);
+        public ICommand TestingButton_ClickCommand => new Utils.RelayCommand(TestingButton_ClickMethod, AlwaysTrue);
 
         #endregion
 

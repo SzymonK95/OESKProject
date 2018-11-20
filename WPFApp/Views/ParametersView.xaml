@@ -143,7 +143,7 @@
                         <TextBlock  Text="Massage is saved in Binary System" Style="{StaticResource MyTextBlockStyle}"/>
                     </Viewbox>
 
-                    <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource MyButtonStyle}" Command="{Binding TestingButton_ClickCommand}" IsEnabled="{Binding EncryptButtonIsEnabled}">
+                    <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource MyButtonStyle}" Command="{Binding TestingButton_ClickCommand}">
                         <Button.Content>
                             <Viewbox>
                                 <TextBlock Text="{Binding TestingButton_ButtonContent}" Style="{StaticResource MyTextBlockStyle}"></TextBlock>
