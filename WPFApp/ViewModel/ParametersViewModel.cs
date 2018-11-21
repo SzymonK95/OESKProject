@@ -26,7 +26,7 @@ namespace WPFApp.ViewModel
             get => decryptionProgressBarValue;
             set
             {
-                if (!TestsManager.areTestsActive)
+                if (!TestsManager.areDecTestsActive)
                 {
                     decryptionProgressBarValue = value;
                     NotifyPropertyChanged(nameof(DecryptionProgressBarValue));
@@ -40,7 +40,7 @@ namespace WPFApp.ViewModel
             get => encryptionProgressBarValue;
             set
             {
-                if (!TestsManager.areTestsActive)
+                if (!TestsManager.areEncTestsActive)
                 {
                     encryptionProgressBarValue = value;
                     NotifyPropertyChanged(nameof(EncryptionProgressBarValue));
@@ -207,7 +207,9 @@ namespace WPFApp.ViewModel
 
         public string MessageLoadButton_ButtonContent => "Load message";
 
-        public string TestingButton_ButtonContent => "Start tests";
+        public string TestingEncButton_ButtonContent => "Start encryption tests";
+
+        public string TestingDecButton_ButtonContent => "Start decryption tests";
 
         #endregion
 
@@ -297,9 +299,14 @@ namespace WPFApp.ViewModel
             }
         }
 
-        public void TestingButton_ClickMethod()
+        public void TestingEncButton_ClickMethod()
         {
-            TestsManager.Test(SliderRedValue, SliderGreenValue, SliderBlueValue);
+            TestsManager.TestEnc(SliderRedValue, SliderGreenValue, SliderBlueValue);
+        }
+
+        public void TestingDecButton_ClickMethod()
+        {
+            TestsManager.TestDec(SliderRedValue, SliderGreenValue, SliderBlueValue);
         }
 
         #region Private
@@ -400,7 +407,8 @@ namespace WPFApp.ViewModel
         public ICommand DecryptButton_ClickCommand => new Utils.RelayCommand(DecryptButton_ClickMethod, AlwaysTrue);
         public ICommand BasicImgLoadButton_ClickCommand => new Utils.RelayCommand(BasicImgLoadButton_ClickMethod, AlwaysTrue);
         public ICommand MessageLoadButton_ClickCommand => new Utils.RelayCommand(MessageLoadButton_ClickMethod, AlwaysTrue);
-        public ICommand TestingButton_ClickCommand => new Utils.RelayCommand(TestingButton_ClickMethod, AlwaysTrue);
+        public ICommand TestingEncButton_ClickCommand => new Utils.RelayCommand(TestingEncButton_ClickMethod, AlwaysTrue);
+        public ICommand TestingDecButton_ClickCommand => new Utils.RelayCommand(TestingDecButton_ClickMethod, AlwaysTrue);
 
         #endregion
 

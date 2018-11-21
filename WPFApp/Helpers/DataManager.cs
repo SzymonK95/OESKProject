@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace WPFApp.Helpers
 {
@@ -28,9 +30,19 @@ namespace WPFApp.Helpers
             StringBuilder sb = new StringBuilder();
 
             int size = 16;
+            int itemToAdd = 0;
             for (int i = 0; i < binaryString.Length; i += size)
             {
-                sb.Append((char) Convert.ToInt32(GetPartOfMessageByPosition(binaryString, i, size), 2));
+                try
+                {
+                    itemToAdd = Convert.ToInt16(GetPartOfMessageByPosition(binaryString, i, size), 2);
+                    sb.Append((Char) itemToAdd);
+                }
+                catch (Exception ex)
+                {
+                    sb.Append("?");
+                }
+
             }
 
             string message = sb.ToString().Split(new string[]
