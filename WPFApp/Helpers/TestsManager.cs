@@ -85,10 +85,10 @@ namespace WPFApp.Helpers
             long baseImgTotalPixCount = baseImg.Height * baseImg.Width;
             long spaceForMessageInBaseImg = baseImgTotalPixCount * (rSize + gSize + bSize);
             long timeOfEcryption = (long)ts.TotalMilliseconds;
-            long percentOfMessageHidedInBaseImg = (messageBinLength * 100) / spaceForMessageInBaseImg;
+            long howManyTimesMessageCanBeHidedInImage = (spaceForMessageInBaseImg * 100) / messageBinLength;
             
             string resultFormat =
-                $"{message.Length};{baseImgTotalPixCount};{spaceForMessageInBaseImg};{percentOfMessageHidedInBaseImg};{timeOfEcryption}";
+                $"{messageBinLength};{baseImgTotalPixCount};{spaceForMessageInBaseImg};{howManyTimesMessageCanBeHidedInImage};{timeOfEcryption}";
 
             FileManager.SaveImageWithMessageToBmp(result, resultFilePath + DateTime.Now.Ticks + ".bmp");
 
